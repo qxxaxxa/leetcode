@@ -1,35 +1,32 @@
 package main
 
-import (
-	"fmt"
-)
+//func main() {
+//	for i := 1; i < 31; i++ {
+//		fmt.Println(countAndSay(i))
+//	}
+//	//fmt.Println(countAndSay(3))
+//}
 
-func main() {
-	for i := 1; i < 31; i++ {
-		fmt.Println(countAndSay(i))
-	}
-	//fmt.Println(countAndSay(3))
-}
 func countAndSay(n int) string {
-	// 第一个1
-	buf := []byte{'1'}
+
+	init := []byte{'1'}
+
 	for n > 1 {
-		buf = say(buf)
+		init = count(init)
 		n--
 	}
-	return string(buf)
+	return string(init)
 }
 
-func say(buf []byte) []byte {
-	res := make([]byte, 0, len(buf)*2)
+func count(init []byte) []byte {
+	re := make([]byte, 0, len(init)*2)
 	i, j := 0, 1
-	for i < len(buf) {
-		// 几个
-		for j < len(buf) && buf[j] == buf[i] {
+	for i < len(init) {
+		for j < len(init) && init[i] == init[j] {
 			j++
 		}
-		res = append(res, byte(j-i+'0'), buf[i])
+		re = append(re, byte(j-i+'0'), init[i])
 		i = j
 	}
-	return res
+	return re
 }
